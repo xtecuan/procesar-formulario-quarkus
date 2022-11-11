@@ -17,6 +17,7 @@ public class FileUtil {
         File targetFile = new File(folder,file.fileName());
 
         FileUtils.writeByteArrayToFile(targetFile,initialStream.readAllBytes());
+        initialStream.close();
 
 
     }
