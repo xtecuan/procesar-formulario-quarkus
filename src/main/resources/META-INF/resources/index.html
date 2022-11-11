@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de ingreso de Informacion de Personas</title>
+</head>
+<body>
+
+     <form enctype="application/x-www-form-urlencoded" method="post" action="/procesar">
+         <b>Nombres:</b> <input type="text" name="firstName" maxlength="50"></br>
+         <b>Apellidos:</b> <input type="text" name="lastName" maxlength="50"></br>
+         <b>Correo:</b> <input type="text" name="email" maxlength="50"></br>
+         <b>Foto:</b> <input type="file" name="photo" accept="application/octet-stream"></br>
+         <input type="submit" value="Enviar"> <input type="reset" value="Borrar">
+     </form>
+
+</body>
+</html>
