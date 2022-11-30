@@ -6,19 +6,28 @@ import org.jboss.resteasy.reactive.multipart.FileUpload;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
+@ApplicationScoped
 public class FileUtil {
 
-    private static File folder = new File("C:\\UFG\\imagenes");
+    @ConfigProperty(name = "carpeta.imagenes")
+    String carpetaImagenes;
+    private File folder;
 
-    public static void escribirImagen(FileUpload file) throws IOException {
-        InputStream initialStream = FileUtils.openInputStream
-                (file.uploadedFile().toFile());
-        File targetFile = new File(folder,file.fileName());
+    @PostConstruct
+    void init() {
+        folder = new File(carpetaImagenes);
+    }
 
-        FileUtils.writeByteArrayToFile(targetFile,initialStream.readAllBytes());
+    public void escribirImagen(FileUpload file) throws IOException {
+        InputStream initialStream = FileUtils.openInputStream(file.uploadedFile().toFile());
+        File targetFile = new File(folder, file.fileName());
+
+        FileUtils.writeByteArrayToFile(targetFile, initialStream.readAllBytes());
         initialStream.close();
-
 
     }
 }

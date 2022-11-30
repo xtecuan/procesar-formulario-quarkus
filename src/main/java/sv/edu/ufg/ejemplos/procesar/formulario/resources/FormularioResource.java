@@ -11,10 +11,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import javax.inject.Inject;
 import org.jboss.logging.Logger;
 
 @Path("procesar")
 public class FormularioResource {
+    
+    @Inject
+    FileUtil fileUtil;
 
     /*public static class Person {
         public String firstName;
@@ -31,7 +35,7 @@ public class FormularioResource {
 
         if(file!=null){
             try {
-                FileUtil.escribirImagen(file);
+                fileUtil.escribirImagen(file);
             }catch (IOException e){
                 LOG.error("Error escribiendo el archivo: ",e);
             }
